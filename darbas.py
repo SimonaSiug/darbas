@@ -24,7 +24,10 @@ def multiply (kintamasis1, kintamasis2):
 
 # Dviejų skaičių dalinimas
 def divide (kintamasis1, kintamasis2):
+    if kintamasis2 ==0:
+    return "Dalyba is nulio negalima"
     return kintamasis1 / kintamasis2
+
 
 # Sukuriama meniu dalis
 print ("Pasirinkite operacija.")
@@ -32,6 +35,7 @@ print("1.Sudeti")
 print("2.Atimti")
 print("3.Sudauginti")
 print("4.Dalinti")
+print("4.Baigti programą")
 
 # Naudotojo įvestis priimama
 While True:
@@ -44,7 +48,7 @@ if pasirinkimas in('1','2','3','4'):
         num2 = float(input("iveskite antra skaiciu:"))
         except ValueError:
             print("Klaida. Prasome ivesti skaiciu.")
-            cintinue
+            continue
             
             if pasirinkimas == '1':
                 print (num1, "+", num2, "=", sudeti(num1, num2))
@@ -57,6 +61,13 @@ if pasirinkimas in('1','2','3','4'):
 
             elif pasirinkimas =='4':
                 print (num1, "/", num2, "=", da;inti(num1, num2))
+            
+            # Tikriname ar naudotojas nori atlikti kitą operaciją
+            kitas_skaiciavimas = input ("Pasirinkite kitą operaciją. (taip/ne):")
+            if kitas_skaiciavimas == "ne":
+                break
+                else:
+                    print ("neteisingas pasirinkimas")
 
 
         
