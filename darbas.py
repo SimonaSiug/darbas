@@ -26,13 +26,13 @@ def divide (kintamasis1, kintamasis2):
 print ("Pasirinkite operacija.")
 print("1.Sudeti")
 print("2.Atimti")
-print("3.Padauginti")
+print("3.Sudauginti")
 print("4.Dalinti")
 
 While True:
 pasirinkimas = input("Irasyti pasirinkima(1/2/3/4):")
 
-if choice in('1','2','3','4'):
+if pasirinkimas in('1','2','3','4'):
     try:
         num1 = float(input("iveskite pirma skaiciu:"))
         num2 = float(input("iveskite antra skaiciu:"))
@@ -40,5 +40,17 @@ if choice in('1','2','3','4'):
             print("Klaida. Prasome ivesti skaiciu.")
             cintinue
             
-            if choice == '1':
-                print (num1, "+", num2, "=", add(num1, num2))
+            if pasirinkimas == '1':
+                print (num1, "+", num2, "=", sudeti(num1, num2))
+
+            elif pasirinkimas =='2':
+                print (num1, "-", num2, "=", atimti(num1, num2))
+
+            elif pasirinkimas =='3':
+                print (num1, "*", num2, "=", sudauginti(num1, num2))
+
+            elif pasirinkimas =='4':
+                print (num1, "/", num2, "=", da;inti(num1, num2))
+
+
+        
