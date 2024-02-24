@@ -12,19 +12,19 @@ def funkcija ():
 #komentaras
 
 # Dviejų skaičių sudėjimas
-def add (kintamasis1, kintamasis2):
+def sudetis (kintamasis1, kintamasis2):
     return kintamasis1 + kintamasis2
 
 # Dviejų skaičių atėmimas
-def subtract (kintamasis1, kintamasis2):
+def atimtis (kintamasis1, kintamasis2):
     return kintamasis1 - kintamasis2
 
 # Dviejų skaičių sudauginimas
-def multiply (kintamasis1, kintamasis2):
+def daugyba (kintamasis1, kintamasis2):
     return kintamasis1 * kintamasis2
 
 # Dviejų skaičių dalinimas
-def divide (kintamasis1, kintamasis2):
+def dalyba (kintamasis1, kintamasis2):
     if kintamasis2 ==0:
     return "Dalyba is nulio negalima"
     return kintamasis1 / kintamasis2
@@ -32,10 +32,10 @@ def divide (kintamasis1, kintamasis2):
 
 # Sukuriama meniu dalis
 print ("Pasirinkite operacija.")
-print("1.Sudeti")
-print("2.Atimti")
-print("3.Sudauginti")
-print("4.Dalinti")
+print("1.Sudetis")
+print("2.Atimtis")
+print("3.Daugyba")
+print("4.Dalyba")
 print("4.Baigti programą")
 
 # Naudotojo įvestis priimama
@@ -82,22 +82,64 @@ if pasirinkimas in('1','2','3','4','5'):
             else:
                     print ("neteisingas pasirinkimas.")                   
 """
-from flask import Flask
+from flask import Flask, request
 
 app = Flask(__name__)
 
-"""
-skaicius = 0 # apsirasome kintamaji ( Globalus )
-"""
 
-@app.route("/")
+
+
+
+
+skaicius = 0 # apsirasome kintamaji ( Globalus )
+
+def sudetis (kintamasis1, kintamasis2):
+    return kintamasis1 + kintamasis2
+
+
+@app.route("/") # Route 1
 def hello_world():
-    return "<p>Hello, World!</p>"
+
+    return f"""
+                <from action="/skaicius">
+                    <label for="test">skaicius 1</label><br>
+                        <input type="text" id"test" name="test" value"0"><br>
+
+                    </br></br>
+
+                    <label for="test2">skaicius 2</label><br>
+                        <input type="text" id"test2" name="test2" value"0"><br><br>
+
+                    </br></br>
+
+                    <label for="[[__ID__]]">skaicius 2</label><br>
+                        <input type="text" id"[[__ID__]]" name="[[__ID__]]" value"0"><br><br>
+
+                    <input type="submit" value"Submit">
+                    </form>
+            """
+
+@app.route("/labas") # Route 2
+def sakyk_labas():
+    global skaicius ## Naudojam globala kintamaji
+    skaicius = skaicius +1 ## Atidarius programa pridedam vieneta
+    skaicius = 10
+    return f"Labas {skaicius}"
+    
+@app.route("/skaicius") # Route 3
+def skaiciavimo():
+    # UZKLAUSA. ARGUMENTAVIMAS. METODAI ()
+   skaicius = request.args.get("test") ## Pasiima argumenta is URL pvz.: /skaicius?test=200
+   skaicius2 = request.args.get("test2")
+
+   suma = sudetis(int(skaicius2),(skaicius))
+   return f"Tavo ivestas skaicius: {suma}"
 
 if __name__ == "__main__":
     app.run()
 
-
+##http://127.0.0.1:5000
+##http://localhost:5000
 
 ''' 1 susidiegiame Flask
     pip3 install Flask
@@ -106,12 +148,7 @@ if __name__ == "__main__":
 # 1. Flask įdiegimas
 # 2. Importuojame
 
-@app.route("/labas")
-def sakyk_labas():
-    global skaicius
-    skaicius = skaicius +1
 
-    return f"Labas {skaicius}"
 
                   
 
