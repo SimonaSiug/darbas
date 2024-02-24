@@ -92,7 +92,7 @@ skaicius = 0 # apsirasome kintamaji ( Globalus )
 
 @app.route("/")
 def hello_world():
-    return "<p>Hellott, World!</p>"
+    return "<p>Hellaaaott, World!</p>"
 
 if __name__ == "__main__":
     app.run()
