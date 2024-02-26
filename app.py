@@ -112,22 +112,26 @@ def dalyba (skaicius1, skaicius2):
 def hello_world():
 
     return f"""
-             <from action="/skaicius"method="get">
+             <from action="/skaicius">
                     <label for="test">skaicius 1</label><br>
-                        <input type="text" id"test" name="test" value"0"><br><br>
+                        <input type="text" id="test" name="test" value="0"><br><br>
 
-                    <label for="operacija">Operacija:</label><select id= "operacija"name="operacija"><option 
-                        value="sudetis">Sudetis</option><option
-                        value="atimtis">Atimtis</option><option
-                        value="daugyba">Daugyba</option><option
-                        value="dalyba">Dalyba</option><select><br><br>
+                    <label for="operacija">Operacija:</label>
+                    <select id= "operacija"name="operacija">
+                        <option 
+                            value="sudetis">Sudetis</option><option
+                            value="atimtis">Atimtis</option><option
+                            value="daugyba">Daugyba</option><option
+                            value="dalyba">Dalyba
+                        </option>
+                    </select><br><br>
             
         
                     <label for="test2">skaicius 2</label><br>
-                        <input type="text" id"test2" name="test2" value"0"><br><br>
+                        <input type="text" id="test2" name="test2" value="0"><br><br>
 
-                    <input type="submit" value"Submit">
-                    </form>
+                    <input type="submit" value="Submit">
+                </form>
             """
 
 @app.route("/labas") # Route 2
