@@ -12,22 +12,22 @@ def funkcija ():
 #komentaras
 
 # Dviejų skaičių sudėjimas
-def sudetis (kintamasis1, kintamasis2):
-    return kintamasis1 + kintamasis2
+def sudetis (skaicius1, skaicius2):
+    return skaicius1 + skaicius2
 
 # Dviejų skaičių atėmimas
-def atimtis (kintamasis1, kintamasis2):
-    return kintamasis1 - kintamasis2
+def atimtis (skaicius1, skaicius2):
+    return skaicius1 - skaicius2
 
 # Dviejų skaičių sudauginimas
-def daugyba (kintamasis1, kintamasis2):
-    return kintamasis1 * kintamasis2
+def daugyba (skaicius1, skaicius2):
+    return skaicius1 * skaicius2
 
 # Dviejų skaičių dalinimas
-def dalyba (kintamasis1, kintamasis2):
-    if kintamasis2 ==0:
+def dalyba (skaicius1, skaicius2):
+    if skaicius2 ==0:
     return "Dalyba is nulio negalima"
-    return kintamasis1 / kintamasis2
+    return skaicius1 / skaicius2
 
 
 # Sukuriama meniu dalis
@@ -52,16 +52,16 @@ if pasirinkimas in('1','2','3','4','5'):
             continue
             
             if pasirinkimas == '1':
-                print (num1, "+", num2, "=", sudeti(num1, num2))
+                print (skaicius1, "+", skaicius2, "=", sudeti(skaicius1, skaicius2))
 
             elif pasirinkimas =='2':
-                print (num1, "-", num2, "=", atimti(num1, num2))
+                print (skaicius1, "-", skaicius2, "=", atimti(skaicius1, skaicius2))
 
             elif pasirinkimas =='3':
-                print (num1, "*", num2, "=", sudauginti(num1, num2))
+                print (skaicius1, "*", skaicius2, "=", sudauginti(skaicius1, skaicius2))
 
             elif pasirinkimas =='4':
-                print (num1, "/", num2, "=", da;inti(num1, num2))
+                print (skaicius1, "/", skaicius2, "=", dalinti(skaicius1, skaicius2))
 
             elif pasirinkimas =='5':
                 print ("Programa baigta.")
@@ -114,7 +114,8 @@ def hello_world():
     return f"""
              <from action="/skaicius">
                     <label for="test">skaicius 1</label><br>
-                        <input type="text" id="test" name="test" value="0"><br><br>
+                        <input type="text" id="test" name="test" value="0"><br>
+                         </br></br>
 
                     <label for="operacija">Operacija:</label>
                     <select id= "operacija"name="operacija">
@@ -129,6 +130,7 @@ def hello_world():
         
                     <label for="test2">skaicius 2</label><br>
                         <input type="text" id="test2" name="test2" value="0"><br><br>
+                         </br></br>
 
                     <input type="submit" value="Submit">
                 </form>
