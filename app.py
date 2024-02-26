@@ -88,30 +88,43 @@ app = Flask(__name__)
 
 
 
-
 skaicius = 0 # apsirasome kintamaji ( Globalus )
+# Dviejų skaičių sudėjimas
+def sudetis (skaicius1, skaicius2):
+    return skaicius1 + skaicius2
 
-def sudetis (kintamasis1, kintamasis2, kintamasis3):
-    return kintamasis1 + kintamasis2 + kintamasis3
+# Dviejų skaičių atėmimas
+def atimtis (skaicius1, skaicius2):
+    return skaicius1 - skaicius2
 
+# Dviejų skaičių sudauginimas
+def daugyba (skaicius1, skaicius2):
+    return skaicius1 * skaicius2
+
+# Dviejų skaičių dalinimas
+def dalyba (skaicius1, skaicius2):
+    if skaicius2 ==0:
+        print ("Dalyba is nulio negalima")
+    else:
+        return skaicius1 / skaicius2
 
 @app.route("/") # Route 1
 def hello_world():
 
     return f"""
-             <from action="/skaicius">
+             <from action="/skaicius"method="get">
                     <label for="test">skaicius 1</label><br>
-                        <input type="text" id"test" name="test" value"0"><br>
+                        <input type="text" id"test" name="test" value"0"><br><br>
 
-                    </br></br>
-
+                    <label for="operacija">Operacija:</label><select id= "operacija"name="operacija"><option 
+                        value="sudetis">Sudetis</option><option
+                        value="atimtis">Atimtis</option><option
+                        value="daugyba">Daugyba</option><option
+                        value="dalyba">Dalyba</option><select><br><br>
+            
+        
                     <label for="test2">skaicius 2</label><br>
                         <input type="text" id"test2" name="test2" value"0"><br><br>
-                    
-                    </br></br>
-
-                    <label for="test3">skaicius 3</label><br>
-                        <input type="text" id"test3" name="test3" value"0"><br><br>
 
                     <input type="submit" value"Submit">
                     </form>
@@ -126,14 +139,27 @@ def sakyk_labas():
     
 @app.route("/skaicius") # Route 3
 def skaiciavimo():
-    # UZKLAUSA. ARGUMENTAVIMAS. METODAI ()
-   skaicius = request.args.get("test") ## Pasiima argumenta is URL pvz.: /skaicius?test=200
-   skaicius2 = request.args.get("test2")
-   skaicius3 = request.args.get("test3")
+    try:
+       # UZKLAUSA. ARGUMENTAVIMAS. METODAI ()
+        skaicius1 = int(request.args.get("test"))## Pasiima argumenta is URL pvz.: /skaicius?test=200
+        skaicius2 = int(request.args.get("test2"))
+        operacija = int(request.args.get("operacija"))
 
-   suma = sudetis(int(skaicius2),int(skaicius),int(skaicius3))
-   return f"Tavo ivestas skaicius: {suma}"
+        if operacija == "sudetis":
+            result = sudetis(skaicius1, skaicius2)
+        elif operacija == "atimtis":
+            result = atimtis(skaicius1, skaicius2)
 
+        elif operacija == "daugyba":
+            result = daugyba(skaicius1, skaicius2)
+
+        elif operacija == "dalyba":
+            result = dalyba(skaicius1, skaicius2)
+        
+        return f"Rezultatas: {result}" 
+    except ValueError:
+        return f"Įveskite skaiciu" 
+    
 if __name__ == "__main__":
     app.run()
 
