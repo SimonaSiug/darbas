@@ -89,19 +89,17 @@ app = Flask(__name__)
 
 
 
-
-
 skaicius = 0 # apsirasome kintamaji ( Globalus )
 
-def sudetis (kintamasis1, kintamasis2):
-    return kintamasis1 + kintamasis2
+def sudetis (kintamasis1, kintamasis2, kintamasis3):
+    return kintamasis1 + kintamasis2 + kintamasis3
 
 
 @app.route("/") # Route 1
 def hello_world():
 
     return f"""
-                <from action="/skaicius">
+             <from action="/skaicius">
                     <label for="test">skaicius 1</label><br>
                         <input type="text" id"test" name="test" value"0"><br>
 
@@ -109,11 +107,11 @@ def hello_world():
 
                     <label for="test2">skaicius 2</label><br>
                         <input type="text" id"test2" name="test2" value"0"><br><br>
-
+                    
                     </br></br>
 
-                    <label for="[[__ID__]]">skaicius 2</label><br>
-                        <input type="text" id"[[__ID__]]" name="[[__ID__]]" value"0"><br><br>
+                    <label for="test3">skaicius 3</label><br>
+                        <input type="text" id"test3" name="test3" value"0"><br><br>
 
                     <input type="submit" value"Submit">
                     </form>
@@ -131,8 +129,9 @@ def skaiciavimo():
     # UZKLAUSA. ARGUMENTAVIMAS. METODAI ()
    skaicius = request.args.get("test") ## Pasiima argumenta is URL pvz.: /skaicius?test=200
    skaicius2 = request.args.get("test2")
+   skaicius3 = request.args.get("test3")
 
-   suma = sudetis(int(skaicius2),(skaicius))
+   suma = sudetis(int(skaicius2),int(skaicius),int(skaicius3))
    return f"Tavo ivestas skaicius: {suma}"
 
 if __name__ == "__main__":
