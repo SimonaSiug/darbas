@@ -135,7 +135,7 @@ def hello_world():
                     <input type="submit" value="Submit">
                 </form>
             """
-
+"""
 @app.route("/labas") # Route 2
 def sakyk_labas():
     global skaicius ## Naudojam globala kintamaji
@@ -178,11 +178,71 @@ if __name__ == "__main__":
 '''
 # 1. Flask įdiegimas
 # 2. Importuojame
+"""
+from flask import Flask, request
 
+app = Flask(__name__)
 
+@app.route('/', methods=['GET', 'POST'])
+def calculator():
+    result_html = ""
+    expression = request.form.get('expression', '')
+    if request.method == 'POST':
+        try:
+            result = eval(expression)
+            result_html = "<h2>Result: {}</h2>".format(result)
+        except:
+            result_html = "<h2>Error: Error</h2>"
 
-                  
+    calculator_html = """
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Skaičiuotuvas</title>
+    </head>
+    <body>
+        <h1>Skaičiuotuvas</h1>
+        <form action="/" method="post">
+            <input type="text" name="expression" value="{}">
+            <br>
+            <button type="button" onclick="button_click('7')">7</button>
+            <button type="button" onclick="button_click('8')">8</button>
+            <button type="button" onclick="button_click('9')">9</button>
+            <button type="button" onclick="button_click('/')">/</button>
+            <br>
+            <button type="button" onclick="button_click('4')">4</button>
+            <button type="button" onclick="button_click('5')">5</button>
+            <button type="button" onclick="button_click('6')">6</button>
+            <button type="button" onclick="button_click('*')">*</button>
+            <br>
+            <button type="button" onclick="button_click('1')">1</button>
+            <button type="button" onclick="button_click('2')">2</button>
+            <button type="button" onclick="button_click('3')">3</button>
+            <button type="button" onclick="button_click('-')">-</button>
+            <br>
+            <button type="button" onclick="button_click('0')">0</button>
+            <button type="button" onclick="button_click('.')">.</button>
+            <button type="submit">=</button>
+            <button type="button" onclick="button_click('+')">+</button>
+            <br>
+            <button type="reset">C</button>
+        </form>
 
-
-
+        {}
         
+        <script>
+            function button_click(symbol) {{
+                var expression_field = document.getElementsByName("expression")[0];
+                expression_field.value += symbol;
+            }}
+        </script>
+    </body>
+    </html>
+    """.format(expression, result_html)
+
+    return calculator_html
+
+if __name__ == '__main__':
+    app.run(debug=True)
