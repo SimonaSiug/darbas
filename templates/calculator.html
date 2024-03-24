@@ -36,52 +36,52 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-2 col-md-2 col-sm-2">
-                            <button type="button" class="operator btn btn-info w-100 mb-2" value="("
+                            <button type="button" class="operator btn btn-info w-100 mb-2" onclick="button_click('(')"
                                     style="outline: 2px solid black;">(</button>
-                            <button type="button" class="operator btn btn-info w-100 mb-2" value=")"
+                            <button type="button" class="operator btn btn-info w-100 mb-2" onclick="button_click(')')"
                                     style="outline: 2px solid black;">)</button>
-                            <button type="button" class="operator btn btn-info w-100 mb-2" value="%"
+                            <button type="button" class="operator btn btn-info w-100 mb-2" onclick="button_click('%')"
                                     style="outline: 2px solid black;">%</button>
                         </div>
                         <div class="col-lg-2 col-md-2 col-sm-2">
-                            <button type="button" class="operator btn btn-info w-100 mb-2" value="+"
+                            <button type="button" class="operator btn btn-info w-100 mb-2" onclick="button_click('+')"
                                     style="outline: 2px solid black;">+</button>
-                            <button type="button" value="7" class="btn btn-light waves-effect w-100 mb-2"
+                            <button type="button" value="7" class="btn btn-light waves-effect w-100 mb-2" onclick="button_click('7')"
                                     style="outline: 2px solid black;">7</button>
-                            <button type="button" value="4" class="btn btn-light waves-effect w-100 mb-2"
+                            <button type="button" value="4" class="btn btn-light waves-effect w-100 mb-2" onclick="button_click('4')"
                                     style="outline: 2px solid black;">4</button>
-                            <button type="button" value="1" class="btn btn-light waves-effect w-100 mb-2"
+                            <button type="button" value="1" class="btn btn-light waves-effect w-100 mb-2" onclick="button_click('1')"
                                     style="outline: 2px solid black;">1</button>
-                            <button type="button" value="0" class="btn btn-light waves-effect w-100 mb-2" style="outline: 2px solid black;">0</button>
+                            <button type="button" value="0" class="btn btn-light waves-effect w-100 mb-2" onclick="button_click('0')" style="outline: 2px solid black;">0</button>
                         </div>
                         <div class="col-lg-2 col-md-2 col-sm-2">
-                            <button type="button" class="operator btn btn-info w-100 mb-2" value="-"
+                            <button type="button" class="operator btn btn-info w-100 mb-2" onclick="button_click('-')"
                                     style="outline: 2px solid black;">-</button>
-                            <button type="button" value="8" class="btn btn-light waves-effect w-100 mb-2"
+                            <button type="button" value="8" class="btn btn-light waves-effect w-100 mb-2" onclick="button_click('8')"
                                     style="outline: 2px solid black;">8</button>
-                            <button type="button" value="5" class="btn btn-light waves-effect w-100 mb-2"
+                            <button type="button" value="5" class="btn btn-light waves-effect w-100 mb-2" onclick="button_click('5')"
                                     style="outline: 2px solid black;">5</button>
-                            <button type="button" value="2" class="btn btn-light waves-effect w-100 mb-2"
+                            <button type="button" value="2" class="btn btn-light waves-effect w-100 mb-2" onclick="button_click('2')"
                                     style="outline: 2px solid black;">2</button>
-                            <button type="button" class="decimal function btn btn-secondary w-100 mb-2"
-                                    value="." style="outline: 2px solid black;">.</button>
+                            <button type="button" class="decimal function btn btn-secondary w-100 mb-2" onclick="button_click('.')" value="."
+                                    style="outline: 2px solid black;">.</button>
                         </div>
                         <div class="col-lg-2 col-md-2 col-sm-2">
-                            <button type="button" class="operator btn btn-info w-100 mb-2" value="*"
+                            <button type="button" class="operator btn btn-info w-100 mb-2" onclick="button_click('*')"
                                     style="outline: 2px solid black;">×</button>
-                            <button type="button" value="9" class="btn btn-light waves-effect w-100 mb-2"
+                            <button type="button" value="9" class="btn btn-light waves-effect w-100 mb-2" onclick="button_click('9')"
                                     style="outline: 2px solid black;">9</button>
-                            <button type="button" value="6" class="btn btn-light waves-effect w-100 mb-2"
+                            <button type="button" value="6" class="btn btn-light waves-effect w-100 mb-2" onclick="button_click('6')"
                                     style="outline: 2px solid black;">6</button>
-                            <button type="button" value="3" class="btn btn-light waves-effect w-100 mb-2"
+                            <button type="button" value="3" class="btn btn-light waves-effect w-100 mb-2" onclick="button_click('3')"
                                     style="outline: 2px solid black;">3</button>
-                            <button type="button" class="clear field function btn btn-danger w-100 mb-2"
+                            <button type="button" class="clear field function btn btn-danger w-100 mb-2" onclick="clear_field()"
                                     style="outline: 2px solid black;" value="clear_field">C</button>
                         </div>
                         <div class="col-lg-2 col-md-2 col-sm-2">
-                            <button type="button" class="operator btn btn-info w-100 mb-2" value="/"
+                            <button type="button" class="operator btn btn-info w-100 mb-2" onclick="button_click('/')"
                                     style="outline: 2px solid black;">÷</button>
-                            <button type="button" class="equal-sign operator btn btn-default w-100 mb-2"
+                            <button type="button" class="equal-sign operator btn btn-default w-100 mb-2" onclick="calculate()"
                                     value="=" style="height: 175px; background-color: green;">=</button>
                         </div>
                         <div class="col-lg-2 col-md-2 col-sm-2">
