@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skaičiuotuvas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .calculator-frame {
+            border: 2px solid #ced4da;
+            border-radius: 10px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10 col-sm-12">
+            <div class="row mb-4">
+                <div class="col-12 text-center">
+                    <h1>Skaičiuotuvas</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 calculator-frame">
+                    <div class="row">
+                        <div class="col-12">
+                            <form method="POST">
+                                <input type="text" name="expression" class="calculator-screen z-depth-1 form-control"
+                                       style="outline: 2px solid black; width: 100%" value="{{ expression }}">
+                            </form>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-2 col-md-2 col-sm-2">
+                            <button type="button" class="operator btn btn-info w-100 mb-2" value="("
+                                    style="outline: 2px solid black;">(</button>
+                            <button type="button" class="operator btn btn-info w-100 mb-2" value=")"
+                                    style="outline: 2px solid black;">)</button>
+                            <button type="button" class="operator btn btn-info w-100 mb-2" value="%"
+                                    style="outline: 2px solid black;">%</button>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2">
+                            <button type="button" class="operator btn btn-info w-100 mb-2" value="+"
+                                    style="outline: 2px solid black;">+</button>
+                            <button type="button" value="7" class="btn btn-light waves-effect w-100 mb-2"
+                                    style="outline: 2px solid black;">7</button>
+                            <button type="button" value="4" class="btn btn-light waves-effect w-100 mb-2"
+                                    style="outline: 2px solid black;">4</button>
+                            <button type="button" value="1" class="btn btn-light waves-effect w-100 mb-2"
+                                    style="outline: 2px solid black;">1</button>
+                            <button type="button" value="0" class="btn btn-light waves-effect w-100 mb-2" style="outline: 2px solid black;">0</button>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2">
+                            <button type="button" class="operator btn btn-info w-100 mb-2" value="-"
+                                    style="outline: 2px solid black;">-</button>
+                            <button type="button" value="8" class="btn btn-light waves-effect w-100 mb-2"
+                                    style="outline: 2px solid black;">8</button>
+                            <button type="button" value="5" class="btn btn-light waves-effect w-100 mb-2"
+                                    style="outline: 2px solid black;">5</button>
+                            <button type="button" value="2" class="btn btn-light waves-effect w-100 mb-2"
+                                    style="outline: 2px solid black;">2</button>
+                            <button type="button" class="decimal function btn btn-secondary w-100 mb-2"
+                                    value="." style="outline: 2px solid black;">.</button>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2">
+                            <button type="button" class="operator btn btn-info w-100 mb-2" value="*"
+                                    style="outline: 2px solid black;">×</button>
+                            <button type="button" value="9" class="btn btn-light waves-effect w-100 mb-2"
+                                    style="outline: 2px solid black;">9</button>
+                            <button type="button" value="6" class="btn btn-light waves-effect w-100 mb-2"
+                                    style="outline: 2px solid black;">6</button>
+                            <button type="button" value="3" class="btn btn-light waves-effect w-100 mb-2"
+                                    style="outline: 2px solid black;">3</button>
+                            <button type="button" class="clear field function btn btn-danger w-100 mb-2"
+                                    style="outline: 2px solid black;" value="clear_field">C</button>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2">
+                            <button type="button" class="operator btn btn-info w-100 mb-2" value="/"
+                                    style="outline: 2px solid black;">÷</button>
+                            <button type="button" class="equal-sign operator btn btn-default w-100 mb-2"
+                                    value="=" style="height: 175px; background-color: green;">=</button>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2">
+                            <button type="button" class="btn btn-light waves-effect w-100 mb-2"
+                                    style="outline: 2px solid black;">sin()</button>
+                            <button type="button" class="btn btn-light waves-effect w-100 mb-2"
+                                    style="outline: 2px solid black;">cos()</button>
+                            <button type="button" class="btn btn-light waves-effect w-100 mb-2"
+                                    style="outline: 2px solid black;">tan()</button>
+                            <button type="button" class="btn btn-light waves-effect w-100 mb-2"
+                                    style="outline: 2px solid black;">log()</button>
+                            <button type="button" class="btn btn-light waves-effect w-100 mb-2"
+                                    style="outline: 2px solid black;">sqrt()</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="show-history" style="display:none;">
+                {{ history_html|safe }}
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    function button_click(symbol) {
+        var expression_field = document.getElementsByName("expression")[0];
+        expression_field.value += symbol;
+    }
+
+    function clear_field() {
+        var expression_field = document.getElementsByName("expression")[0];
+        expression_field.value = "";
+    }
+
+    function calculate() {
+        var expression_field = document.querySelector(".calculator-screen");
+        expression_field.value = eval(expression_field.value);
+    }
+
+    function show_history() {
+        var show_history = document.getElementById("show-history");
+        show_history.style.display = "block";
+    }
+
+</script>
+</body>
+</html>
