@@ -133,7 +133,6 @@ def calculator():
 
     return render_template('calculator.html', expression=expression, result_html=result_html, history_html=history_html)
 
-
 if __name__ == '__main__':
     app.run(debug=True)
 

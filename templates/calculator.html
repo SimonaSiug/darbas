@@ -85,11 +85,19 @@
                                     value="=" style="height: 175px; background-color: green;">=</button>
                         </div>
                         <div class="col-lg-2 col-md-2 col-sm-2">
-                            <button type="button" class="btn btn-light waves-effect w-100 mb-2" style="outline: 2px solid black;" onclick="button_click('Math.sin(')">sin()</button>
-                    <button type="button" class="btn btn-light waves-effect w-100 mb-2" style="outline: 2px solid black;" onclick="button_click('Math.cos(')">cos()</button>
-                    <button type="button" class="btn btn-light waves-effect w-100 mb-2" style="outline: 2px solid black;" onclick="button_click('Math.tan(')">tan()</button>
-                    <button type="button" class="btn btn-light waves-effect w-100 mb-2" style="outline: 2px solid black;" onclick="button_click('Math.log(')">log()</button>
-                    <button type="button" class="btn btn-light waves-effect w-100 mb-2" style="outline: 2px solid black;" onclick="button_click('Math.sqrt(')">sqrt()</button>
+                            <button type="button" class="btn btn-light waves-effect w-100 mb-2" onclick="button_click('Math.sin(')">sin()</button>
+                                    style="outline: 2px solid black;">sin()</button>
+                            <button type="button" class="btn btn-light waves-effect w-100 mb-2" onclick="button_click('Math.cos(')">cos()</button>
+                                    style="outline: 2px solid black;">cos()</button>
+                            <button type="button" class="btn btn-light waves-effect w-100 mb-2" onclick="button_click('Math.tan(')">tan()</button>
+                                    style="outline: 2px solid black;" >tan()</button>
+                            <button type="button" class="btn btn-light waves-effect w-100 mb-2" onclick="button_click('Math.log(')">log()</button>
+                                    style="outline: 2px solid black;">log()</button>
+                            <button type="button" class="btn btn-light waves-effect w-100 mb-2" onclick="button_click('Math.sqrt(')">sqrt()</button>
+                                    style="outline: 2px solid black;">sqrt</button>
+                            <div id="show-history" style="display:none;">
+                                        {{ history_html|safe }}
+                            </div>        
                         </div>
                     </div>
                 </div>
@@ -105,7 +113,15 @@
 <script>
     function button_click(symbol) {
         var expression_field = document.getElementsByName("expression")[0];
-        expression_field.value += symbol;
+        var lastChar = expression_field.value.slice(-1);
+        if (!isNaN(lastChar) && symbol === '%') {
+            var expressionArray = expression_field.value.split(/[\+\-\*\/]/);
+            var lastNumber = expressionArray[expressionArray.length - 1];
+            var percentValue = parseFloat(lastNumber) * 0.01;
+            expression_field.value = expression_field.value.slice(0, -lastNumber.length) + percentValue;
+        } else {
+            expression_field.value += symbol;
+        }
     }
 
     function clear_field() {
