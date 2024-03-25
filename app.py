@@ -108,18 +108,23 @@ def dalyba(skaicius1, skaicius2):
     else:
         return skaicius1 / skaicius2
 
+def calculate(expression):
+    percent_index = expression.find('%')
+    if percent_index != -1:
+        expression = expression.replace('%', '*0.01')
+    try:
+        result = eval(expression)
+        history.append(expression + " = " + str(result))
+        return "<h2>Rezultatas: {}</h2>".format(result)
+    except Exception as e:
+        return "<h2>Klaida: {}</h2>".format(e)
 
 @app.route("/", methods=['GET', 'POST'])
 def calculator():
     result_html = ""
     expression = request.form.get('expression', '')
     if request.method == 'POST':
-        try:
-            result = eval(expression)
-            result_html = "<h2>Rezultatas: {}</h2>".format(result)
-            history.append(expression + " = " + str(result))
-        except:
-            result_html = "<h2>Klaida: Klaida</h2>"
+        result_html = calculate(expression)
 
     history_html = "<h2>Veiksmų istorija:</h2><ul>"
     for item in history:
